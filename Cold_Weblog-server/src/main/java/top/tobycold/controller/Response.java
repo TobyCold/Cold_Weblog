@@ -5,6 +5,9 @@ public class Response {
     private String message;
     private Object data;
 
+    public Response() {
+    }
+
     public Response(int code, String message, Object data) {
         this.code = code;
         this.message = message;
@@ -15,23 +18,26 @@ public class Response {
         return code;
     }
 
-    public void setCode(int code) {
+    public Response setCode(int code) {
         this.code = code;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public Response setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public Object getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public Response setData(Object data) {
         this.data = data;
+        return this;
     }
 }

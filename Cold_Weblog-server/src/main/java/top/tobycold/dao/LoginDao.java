@@ -8,7 +8,6 @@ import top.tobycold.domain.User;
 import java.util.List;
 
 
-@Mapper
 public interface LoginDao {
 
     @Select("select * from tb_login where username = #{username} AND password = #{password}")
