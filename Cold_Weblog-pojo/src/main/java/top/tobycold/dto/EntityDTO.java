@@ -1,8 +1,8 @@
-package top.tobycold.dao;
+package top.tobycold.dto;
 
 import lombok.Data;
 @Data
-public class LoginUser {
+public class EntityDTO {
     private String account;
     private String possword;
 }

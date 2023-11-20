@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/dtd/mybatis-3-mapper.dtd"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.tobycold.mapper.MusicMapper">
+
+    <select id="getMusicPage" resultType="top.tobycold.pojo.MusicEntity">
+        select * from tb_music <where>
+         <if test="id != null">
+             and id = #{id}
+         </if>
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and create_time = #{createTime}
+        </if>
+         <if test="views != null and views != ''">
+             and views = #{views}
+         </if>
+            order by create_time desc
+    </where>
+    </select>
+
+</mapper>

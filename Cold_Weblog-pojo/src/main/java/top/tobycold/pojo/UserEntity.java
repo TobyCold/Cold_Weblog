@@ -3,7 +3,7 @@ package top.tobycold.pojo;
 import lombok.Data;
 
 @Data
-public class EntityUser {
+public class UserEntity {
     private Long id;
     private String username;
     private String sex;

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan("top.tobycold.service")
-@PropertySource("classpath:jdbc.properties")
-@Import({JdbcConfig.class, MybatisConfig.class})
+@PropertySource({"classpath:jdbc.properties", "classpath:music.properties"})
+@Import({JdbcConfig.class, MyBatisConfig.class, MapperConfig.class})
 public class SpringConfig {
 }
