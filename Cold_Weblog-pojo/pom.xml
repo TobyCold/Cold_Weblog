@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>Cold_Weblog-pojo</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

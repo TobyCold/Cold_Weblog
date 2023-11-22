@@ -7,13 +7,13 @@
         <groupId>top.tobycold</groupId>
         <artifactId>Cold_Weblog</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../../Cold_Weblog/pom.xml</relativePath>
     </parent>
 
     <artifactId>Cold_Weblog-server</artifactId>
     <packaging>war</packaging>
     <name>Cold_Weblog-server-Webapp</name>
     <url>http://maven.apache.org</url>
-
 
 
     <dependencies>
@@ -24,40 +24,17 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>top.tobycold</groupId>
             <artifactId>Cold_Weblog-common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>Cold_Weblog-server</finalName>
-        <plugins>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

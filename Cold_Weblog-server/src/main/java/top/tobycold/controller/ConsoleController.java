@@ -1,23 +1,24 @@
-package top.tobycold.controller.console;
+package top.tobycold.controller;
 
+import cn.hutool.jwt.JWT;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import top.tobycold.admin.JwtConfig;
 import top.tobycold.dao.Response;
 import top.tobycold.dto.EntityDTO;
+import top.tobycold.pojo.UserEntity;
 import top.tobycold.service.ConsoleService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 
 @RestController
 @RequestMapping("console")
-@Api("管理后台相关接口")
+@Api(tags = "管理后台相关接口")
 @Slf4j
 public class ConsoleController {
     /**
@@ -32,8 +33,18 @@ public class ConsoleController {
     @ApiOperation("登录接口")
     public Response<?> login(EntityDTO entityDTO, HttpServletRequest request) {
         log.info("登录用户详细：{} -> ip地址：{}",entityDTO, request.getRemoteAddr());
-        String token = consoleService.login(entityDTO, request.getLocalAddr());
-        return Response.seccess(token);
+        UserEntity user = consoleService.login(entityDTO, request.getLocalAddr());
+        //TODO 这里可能走异常处理器，不会查询出结果
+        log.info("service查询结果UserEntity:{}", user);
+        if (user == null || !user.getPassword().equals(entityDTO.getPassword())){
+            return Response.error("账号或密码错误", null);
+        }
+        String token = JWT.create()
+                .setNotBefore(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))   //两个小时
+                .setKey(JwtConfig.TOKEN_KEY.getBytes())
+                .setPayload("id", user.getId())
+                .sign();
+        return Response.success(token);
     }
 
     /**
@@ -41,13 +52,15 @@ public class ConsoleController {
      * TODO 待完成
      * @param entityDTO
      * @param request
-     * @return
+     * @return tr
      */
     @RequestMapping(value = "registered", method = RequestMethod.POST)
     public Response<?> registered(EntityDTO entityDTO, HttpServletRequest request) {
-
-        return Response.seccess();
+        
+        return Response.success();
     }
+
+
 
 }
 

@@ -12,15 +12,15 @@ public class MyBatisConfig {
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setTypeAliasesPackage("top.tobycold.domain");
+        sqlSessionFactoryBean.setTypeAliasesPackage("top.tobycold.pojo");
         sqlSessionFactoryBean.setDataSource(dataSource);
         return  sqlSessionFactoryBean;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource){
-        DataSourceTransactionManager ds = new DataSourceTransactionManager();
-        ds.setDataSource(dataSource);
-        return ds;
-    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager(DataSource dataSource){
+//        DataSourceTransactionManager ds = new DataSourceTransactionManager();
+//        ds.setDataSource(dataSource);
+//        return ds;
+//    }
 }
